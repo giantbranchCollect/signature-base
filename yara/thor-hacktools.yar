@@ -42,7 +42,6 @@ rule Amplia_Security_Tool
       nodeepdive = 1
     strings:
       $a = "Amplia Security"
-      $b = "Hernan Ochoa"
       $c = "getlsasrvaddr.exe"
       $d = "Cannot get PID of LSASS.EXE"
       $e = "extract the TGT session key"
@@ -120,6 +119,7 @@ rule HackTool_Samples {
 rule Fierce2
 {
    meta:
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       description = "This signature detects the Fierce2 domain scanner"
       date = "07/2014"
@@ -133,6 +133,7 @@ rule Fierce2
 rule Ncrack
 {
    meta:
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       description = "This signature detects the Ncrack brute force tool"
       date = "07/2014"
@@ -146,6 +147,7 @@ rule Ncrack
 rule SQLMap
 {
    meta:
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       description = "This signature detects the SQLMap SQL injection tool"
       date = "07/2014"
@@ -441,6 +443,7 @@ rule crack_Loader {
 rule CN_GUI_Scanner {
    meta:
       description = "Detects an unknown GUI scanner tool - CN background"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       hash = "3c67bbb1911cdaef5e675c56145e1112"
       score = 65
@@ -458,6 +461,7 @@ rule CN_GUI_Scanner {
 rule CN_Packed_Scanner {
    meta:
       description = "Suspiciously packed executable"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       hash = "6323b51c116a77e3fba98f7bb7ff4ac6"
       score = 40
@@ -474,6 +478,7 @@ rule CN_Packed_Scanner {
 rule Tiny_Network_Tool_Generic {
    meta:
       description = "Tiny tool with suspicious function imports. (Rule based on WinEggDrop Scanner samples)"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "08.10.2014"
       score = 40
@@ -482,8 +487,6 @@ rule Tiny_Network_Tool_Generic {
       hash1 = "cafc31d39c1e4721af3ba519759884b9"
       hash2 = "8e635b9a1e5aa5ef84bfa619bd2a1f92"
    strings:
-      $magic   = { 4d 5a }
-
       $s0 = "KERNEL32.DLL" fullword ascii
       $s1 = "CRTDLL.DLL" fullword ascii
       $s3 = "LoadLibraryA" fullword ascii
@@ -504,12 +507,13 @@ rule Tiny_Network_Tool_Generic {
       $z4 = "ToAscii" fullword ascii
 
    condition:
-      ( $magic at 0 ) and all of ($s*) and ( all of ($y*) or all of ($x*) or all of ($z*) ) and filesize < 15KB
+      uint16(0) == 0x5a4d and all of ($s*) and ( all of ($y*) or all of ($x*) or all of ($z*) ) and filesize < 15KB
 }
 
 rule Beastdoor_Backdoor {
    meta:
       description = "Detects the backdoor Beastdoor"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       score = 55
       hash = "5ab10dda548cb821d7c15ebcd0a9f1ec6ef1a14abcc8ad4056944d060c49535a"
@@ -530,6 +534,7 @@ rule Beastdoor_Backdoor {
 rule Powershell_Netcat {
    meta:
       description = "Detects a Powershell version of the Netcat network hacking tool"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       score = 60
       date = "10.10.2014"
@@ -544,6 +549,7 @@ rule Powershell_Netcat {
 rule Chinese_Hacktool_1014 {
    meta:
       description = "Detects a chinese hacktool with unknown use"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       score = 60
       date = "10.10.2014"
@@ -561,6 +567,7 @@ rule Chinese_Hacktool_1014 {
 rule CN_Hacktool_BAT_PortsOpen {
    meta:
       description = "Detects a chinese BAT hacktool for local port evaluation"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       score = 60
       date = "12.10.2014"
@@ -575,6 +582,7 @@ rule CN_Hacktool_BAT_PortsOpen {
 rule CN_Hacktool_SSPort_Portscanner {
    meta:
       description = "Detects a chinese Portscanner named SSPort"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       score = 70
       date = "12.10.2014"
@@ -589,6 +597,7 @@ rule CN_Hacktool_SSPort_Portscanner {
 rule CN_Hacktool_ScanPort_Portscanner {
    meta:
       description = "Detects a chinese Portscanner named ScanPort"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       score = 70
       date = "12.10.2014"
@@ -603,6 +612,7 @@ rule CN_Hacktool_ScanPort_Portscanner {
 rule CN_Hacktool_S_EXE_Portscanner {
    meta:
       description = "Detects a chinese Portscanner named s.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       score = 70
       date = "12.10.2014"
@@ -617,6 +627,7 @@ rule CN_Hacktool_S_EXE_Portscanner {
 rule CN_Hacktool_MilkT_BAT {
    meta:
       description = "Detects a chinese Portscanner named MilkT - shipped BAT"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       score = 70
       date = "12.10.2014"
@@ -630,6 +641,7 @@ rule CN_Hacktool_MilkT_BAT {
 rule CN_Hacktool_MilkT_Scanner {
    meta:
       description = "Detects a chinese Portscanner named MilkT"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       score = 60
       date = "12.10.2014"
@@ -648,11 +660,11 @@ rule CN_Hacktool_MilkT_Scanner {
 rule CN_Hacktool_1433_Scanner {
    meta:
       description = "Detects a chinese MSSQL scanner"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       score = 40
       date = "12.10.2014"
    strings:
-      $magic = { 4d 5a }
       $s0 = "1433" wide fullword
       $s1 = "1433V" wide
       $s2 = "del Weak1.txt" ascii fullword
@@ -660,27 +672,28 @@ rule CN_Hacktool_1433_Scanner {
       $s4 = "del /s /Q C:\\Windows\\system32\\doors\\" fullword ascii
       $s5 = "!&start iexplore http://www.crsky.com/soft/4818.html)" fullword ascii
    condition:
-      ( $magic at 0 ) and all of ($s*)
+      uint16(0) == 0x5a4d and all of ($s*)
 }
 
 rule CN_Hacktool_1433_Scanner_Comp2 {
    meta:
       description = "Detects a chinese MSSQL scanner - component 2"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       score = 40
       date = "12.10.2014"
    strings:
-      $magic = { 4d 5a }
       $s0 = "1433" wide fullword
       $s1 = "1433V" wide
       $s2 = "UUUMUUUfUUUfUUUfUUUfUUUfUUUfUUUfUUUfUUUfUUUfUUUMUUU" ascii fullword
    condition:
-      ( $magic at 0 ) and all of ($s*)
+      uint16(0) == 0x5a4d and all of ($s*)
 }
 
 rule WCE_Modified_1_1014 {
    meta:
       description = "Modified (packed) version of Windows Credential Editor"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       hash = "09a412ac3c85cedce2642a19e99d8f903a2e0354"
       score = 70
@@ -695,6 +708,7 @@ rule WCE_Modified_1_1014 {
 rule ReactOS_cmd_valid {
    meta:
       description = "ReactOS cmd.exe with correct file name - maybe packed with software or part of hacker toolset"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "05.11.14"
       reference = "http://www.elifulkerson.com/articles/suzy-sells-cmd-shells.php"
@@ -712,6 +726,7 @@ rule ReactOS_cmd_valid {
 rule iKAT_wmi_rundll {
    meta:
       description = "This exe will attempt to use WMI to Call the Win32_Process event to spawn rundll - file wmi_rundll.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "05.11.14"
       score = 65
@@ -733,6 +748,7 @@ rule iKAT_wmi_rundll {
 rule iKAT_revelations {
    meta:
       description = "iKAT hack tool showing the content of password fields - file revelations.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "05.11.14"
       score = 75
@@ -750,6 +766,7 @@ rule iKAT_revelations {
 rule iKAT_priv_esc_tasksch {
    meta:
       description = "Task Schedulder Local Exploit - Windows local priv-esc using Task Scheduler, published by webDevil. Supports Windows 7 and Vista."
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "05.11.14"
       score = 75
@@ -776,6 +793,7 @@ rule iKAT_priv_esc_tasksch {
 rule iKAT_command_lines_agent {
    meta:
       description = "iKAT hack tools set agent - file ikat.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "05.11.14"
       score = 75
@@ -797,6 +815,7 @@ rule iKAT_command_lines_agent {
 rule iKAT_cmd_as_dll {
    meta:
       description = "iKAT toolset file cmd.dll ReactOS file cloaked"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "05.11.14"
       score = 65
@@ -815,6 +834,7 @@ rule iKAT_cmd_as_dll {
 rule iKAT_tools_nmap {
    meta:
       description = "Generic rule for NMAP - based on NMAP 4 standalone"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "05.11.14"
       score = 50
@@ -832,6 +852,7 @@ rule iKAT_tools_nmap {
 rule iKAT_startbar {
    meta:
       description = "Tool to hide unhide the windows startbar from command line - iKAT hack tools - file startbar.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "05.11.14"
       score = 50
@@ -852,6 +873,7 @@ rule iKAT_startbar {
 rule iKAT_Tool_Generic {
    meta:
       description = "Generic Rule for hack tool iKAT files gpdisable.exe, kitrap0d.exe, uacpoc.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "05.11.14"
       score = 55
@@ -929,18 +951,6 @@ rule BypassUacDll_6 {
       all of them
 }
 
-rule BypassUacDll_7 {
-   meta:
-      description = "Auto-generated rule - file BypassUacDll.aps"
-      author = "yarGen Yara Rule Generator"
-      hash = "58d7b24b6870cb7f1ec4807d2f77dd984077e531"
-   strings:
-      $s3 = "BypassUacDLL.dll" fullword wide
-      $s4 = "AFX_IDP_COMMAND_FAILURE" fullword ascii
-   condition:
-      all of them
-}
-
 rule BypassUac_EXE {
    meta:
       description = "Auto-generated rule - file BypassUacDll.aps"
@@ -975,6 +985,7 @@ rule APT_Proxy_Malware_Packed_dev
 rule Tzddos_DDoS_Tool_CN {
    meta:
       description = "Disclosed hacktool set - file tzddos"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "17.11.14"
       score = 60
@@ -994,6 +1005,7 @@ rule Tzddos_DDoS_Tool_CN {
 rule Ncat_Hacktools_CN {
    meta:
       description = "Disclosed hacktool set - file nc.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "17.11.14"
       score = 60
@@ -1012,6 +1024,7 @@ rule Ncat_Hacktools_CN {
 rule MS08_067_Exploit_Hacktools_CN {
    meta:
       description = "Disclosed hacktool set - file cs.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "17.11.14"
       score = 60
@@ -1031,6 +1044,7 @@ rule MS08_067_Exploit_Hacktools_CN {
 rule Hacktools_CN_Burst_sql {
    meta:
       description = "Disclosed hacktool set - file sql.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "17.11.14"
       score = 60
@@ -1052,6 +1066,7 @@ rule Hacktools_CN_Burst_sql {
 rule Hacktools_CN_Panda_445TOOL {
    meta:
       description = "Disclosed hacktool set - file 445TOOL.rar"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "17.11.14"
       score = 60
@@ -1068,6 +1083,7 @@ rule Hacktools_CN_Panda_445TOOL {
 rule Hacktools_CN_Panda_445 {
    meta:
       description = "Disclosed hacktool set - file 445.rar"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "17.11.14"
       score = 60
@@ -1088,6 +1104,7 @@ rule Hacktools_CN_Panda_445 {
 rule Hacktools_CN_WinEggDrop {
    meta:
       description = "Disclosed hacktool set - file s.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "17.11.14"
       score = 60
@@ -1111,6 +1128,7 @@ rule Hacktools_CN_WinEggDrop {
 rule Hacktools_CN_Scan_BAT {
    meta:
       description = "Disclosed hacktool set - file scan.bat"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "17.11.14"
       score = 60
@@ -1129,6 +1147,7 @@ rule Hacktools_CN_Scan_BAT {
 rule Hacktools_CN_Panda_Burst {
    meta:
       description = "Disclosed hacktool set - file Burst.rar"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "17.11.14"
       score = 60
@@ -1142,6 +1161,7 @@ rule Hacktools_CN_Panda_Burst {
 rule Hacktools_CN_445_cmd {
    meta:
       description = "Disclosed hacktool set - file cmd.bat"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "17.11.14"
       score = 60
@@ -1151,12 +1171,13 @@ rule Hacktools_CN_445_cmd {
       $s0 = "cs.exe %1" fullword ascii
       $s2 = "nc %1 4444" fullword ascii
    condition:
-      $bat at 0 and all of ($s*)
+      uint32(0) == 0x68636540 and $bat at 0 and all of ($s*)
 }
 
 rule Hacktools_CN_GOGOGO_Bat {
    meta:
       description = "Disclosed hacktool set - file GOGOGO.bat"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "17.11.14"
       score = 60
@@ -1182,6 +1203,7 @@ rule Hacktools_CN_GOGOGO_Bat {
 rule Hacktools_CN_Burst_pass {
    meta:
       description = "Disclosed hacktool set - file pass.txt"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "17.11.14"
       score = 60
@@ -1205,6 +1227,7 @@ rule Hacktools_CN_Burst_pass {
 rule Hacktools_CN_JoHor_Posts_Killer {
    meta:
       description = "Disclosed hacktool set - file JoHor_Posts_Killer.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "17.11.14"
       score = 60
@@ -1226,6 +1249,7 @@ rule Hacktools_CN_JoHor_Posts_Killer {
 rule Hacktools_CN_Panda_tesksd {
    meta:
       description = "Disclosed hacktool set - file tesksd.jpg"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "17.11.14"
       score = 60
@@ -1241,6 +1265,7 @@ rule Hacktools_CN_Panda_tesksd {
 rule Hacktools_CN_Http {
    meta:
       description = "Disclosed hacktool set - file Http.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "17.11.14"
       score = 60
@@ -1257,6 +1282,7 @@ rule Hacktools_CN_Http {
 rule Hacktools_CN_Burst_Start {
    meta:
       description = "Disclosed hacktool set - file Start.bat - DoS tool"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "17.11.14"
       score = 60
@@ -1278,6 +1304,7 @@ rule Hacktools_CN_Burst_Start {
 rule Hacktools_CN_Panda_tasksvr {
    meta:
       description = "Disclosed hacktool set - file tasksvr.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "17.11.14"
       score = 60
@@ -1292,6 +1319,7 @@ rule Hacktools_CN_Panda_tasksvr {
 rule Hacktools_CN_Burst_Clear {
    meta:
       description = "Disclosed hacktool set - file Clear.bat"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "17.11.14"
       score = 60
@@ -1313,6 +1341,7 @@ rule Hacktools_CN_Burst_Clear {
 rule Hacktools_CN_Burst_Thecard {
    meta:
       description = "Disclosed hacktool set - file Thecard.bat"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "17.11.14"
       score = 60
@@ -1330,6 +1359,7 @@ rule Hacktools_CN_Burst_Thecard {
 rule Hacktools_CN_Burst_Blast {
    meta:
       description = "Disclosed hacktool set - file Blast.bat"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "17.11.14"
       score = 60
@@ -1344,6 +1374,7 @@ rule Hacktools_CN_Burst_Blast {
 rule VUBrute_VUBrute {
    meta:
       description = "PoS Scammer Toolbox - http://goo.gl/xiIphp - file VUBrute.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "22.11.14"
       score = 70
@@ -1360,6 +1391,7 @@ rule VUBrute_VUBrute {
 rule DK_Brute {
    meta:
       description = "PoS Scammer Toolbox - http://goo.gl/xiIphp - file DK Brute.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "22.11.14"
       score = 70
@@ -1377,6 +1409,7 @@ rule DK_Brute {
 rule VUBrute_config {
    meta:
       description = "PoS Scammer Toolbox - http://goo.gl/xiIphp - file config.ini"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "22.11.14"
       score = 70
@@ -1397,6 +1430,7 @@ rule VUBrute_config {
 rule sig_238_hunt {
    meta:
       description = "Disclosed hacktool set (old stuff) - file hunt.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -1416,6 +1450,7 @@ rule sig_238_hunt {
 rule sig_238_listip {
    meta:
       description = "Disclosed hacktool set (old stuff) - file listip.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -1434,6 +1469,7 @@ rule sig_238_listip {
 rule ArtTrayHookDll {
    meta:
       description = "Disclosed hacktool set (old stuff) - file ArtTrayHookDll.dll"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -1448,6 +1484,7 @@ rule ArtTrayHookDll {
 rule sig_238_eee {
    meta:
       description = "Disclosed hacktool set (old stuff) - file eee.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -1467,6 +1504,7 @@ rule sig_238_eee {
 rule aspbackdoor_asp4 {
    meta:
       description = "Disclosed hacktool set (old stuff) - file asp4.txt"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -1487,6 +1525,7 @@ rule aspbackdoor_asp4 {
 rule aspfile1 {
    meta:
       description = "Disclosed hacktool set (old stuff) - file aspfile1.asp"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -1505,6 +1544,7 @@ rule aspfile1 {
 rule EditServer {
    meta:
       description = "Disclosed hacktool set (old stuff) - file EditServer.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -1527,6 +1567,7 @@ rule EditServer {
 rule sig_238_letmein {
    meta:
       description = "Disclosed hacktool set (old stuff) - file letmein.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -1543,6 +1584,7 @@ rule sig_238_letmein {
 rule sig_238_token {
    meta:
       description = "Disclosed hacktool set (old stuff) - file token.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -1560,6 +1602,7 @@ rule sig_238_token {
 rule sig_238_TELNET {
    meta:
       description = "Disclosed hacktool set (old stuff) - file TELNET.EXE from Windows ME"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -1576,6 +1619,7 @@ rule sig_238_TELNET {
 rule snifferport {
    meta:
       description = "Disclosed hacktool set (old stuff) - file snifferport.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -1593,6 +1637,7 @@ rule snifferport {
 rule sig_238_webget {
    meta:
       description = "Disclosed hacktool set (old stuff) - file webget.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -1609,6 +1654,7 @@ rule sig_238_webget {
 rule XYZCmd_zip_Folder_XYZCmd {
    meta:
       description = "Disclosed hacktool set (old stuff) - file XYZCmd.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -1625,6 +1671,7 @@ rule XYZCmd_zip_Folder_XYZCmd {
 rule ASPack_Chinese {
    meta:
       description = "Disclosed hacktool set (old stuff) - file ASPack Chinese.ini"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -1642,6 +1689,7 @@ rule ASPack_Chinese {
 rule aspbackdoor_EDIR {
    meta:
       description = "Disclosed hacktool set (old stuff) - file EDIR.ASP"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -1656,30 +1704,10 @@ rule aspbackdoor_EDIR {
       all of them
 }
 
-rule sig_238_filespy {
-   meta:
-      description = "Disclosed hacktool set (old stuff) - file filespy.exe"
-      author = "Florian Roth"
-      date = "23.11.14"
-      score = 50
-      hash = "89d8490039778f8c5f07aa7fd476170293d24d26"
-   strings:
-      $s0 = "Hit [Enter] to begin command mode..." fullword ascii
-      $s1 = "If you are in command mode," fullword ascii
-      $s2 = "[/l] lists all the drives the monitor is currently attached to" fullword ascii
-      $s9 = "FileSpy.exe" fullword wide
-      $s12 = "ERROR starting FileSpy..." fullword ascii
-      $s16 = "exe\\filespy.dbg" fullword ascii
-      $s17 = "[/d <drive>] detaches monitor from <drive>" fullword ascii
-      $s19 = "Should be logging to screen..." fullword ascii
-      $s20 = "Filmon:  Unknown log record type" fullword ascii
-   condition:
-      7 of them
-}
-
 rule ByPassFireWall_zip_Folder_Ie {
    meta:
       description = "Disclosed hacktool set (old stuff) - file Ie.dll"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -1696,6 +1724,7 @@ rule ByPassFireWall_zip_Folder_Ie {
 rule EditKeyLogReadMe {
    meta:
       description = "Disclosed hacktool set (old stuff) - file EditKeyLogReadMe.txt"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -1714,6 +1743,7 @@ rule EditKeyLogReadMe {
 rule PassSniffer_zip_Folder_readme {
    meta:
       description = "Disclosed hacktool set (old stuff) - file readme.txt"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -1729,6 +1759,7 @@ rule PassSniffer_zip_Folder_readme {
 rule sig_238_gina {
    meta:
       description = "Disclosed hacktool set (old stuff) - file gina.reg"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -1744,6 +1775,7 @@ rule sig_238_gina {
 rule splitjoin {
    meta:
       description = "Disclosed hacktool set (old stuff) - file splitjoin.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -1760,6 +1792,7 @@ rule splitjoin {
 rule EditKeyLog {
    meta:
       description = "Disclosed hacktool set (old stuff) - file EditKeyLog.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -1776,6 +1809,7 @@ rule EditKeyLog {
 rule PassSniffer {
    meta:
       description = "Disclosed hacktool set (old stuff) - file PassSniffer.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -1794,6 +1828,7 @@ rule PassSniffer {
 rule aspfile2 {
    meta:
       description = "Disclosed hacktool set (old stuff) - file aspfile2.asp"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -1810,6 +1845,7 @@ rule aspfile2 {
 rule UnPack_rar_Folder_InjectT {
    meta:
       description = "Disclosed hacktool set (old stuff) - file InjectT.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -1833,6 +1869,7 @@ rule UnPack_rar_Folder_InjectT {
 rule Jc_WinEggDrop_Shell {
    meta:
       description = "Disclosed hacktool set (old stuff) - file Jc.WinEggDrop Shell.txt"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -1852,6 +1889,7 @@ rule Jc_WinEggDrop_Shell {
 rule aspbackdoor_asp1 {
    meta:
       description = "Disclosed hacktool set (old stuff) - file asp1.txt"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -1870,6 +1908,7 @@ rule aspbackdoor_asp1 {
 rule QQ_zip_Folder_QQ {
    meta:
       description = "Disclosed hacktool set (old stuff) - file QQ.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -1890,6 +1929,7 @@ rule QQ_zip_Folder_QQ {
 rule UnPack_rar_Folder_TBack {
    meta:
       description = "Disclosed hacktool set (old stuff) - file TBack.DLL"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -1918,6 +1958,7 @@ rule UnPack_rar_Folder_TBack {
 rule sig_238_cmd_2 {
    meta:
       description = "Disclosed hacktool set (old stuff) - file cmd.jsp"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -1935,6 +1976,7 @@ rule sig_238_cmd_2 {
 rule RangeScan {
    meta:
       description = "Disclosed hacktool set (old stuff) - file RangeScan.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -1952,6 +1994,7 @@ rule RangeScan {
 rule XYZCmd_zip_Folder_Readme {
    meta:
       description = "Disclosed hacktool set (old stuff) - file Readme.txt"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -1966,6 +2009,7 @@ rule XYZCmd_zip_Folder_Readme {
 rule ByPassFireWall_zip_Folder_Inject {
    meta:
       description = "Disclosed hacktool set (old stuff) - file Inject.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -1981,6 +2025,7 @@ rule ByPassFireWall_zip_Folder_Inject {
 rule sig_238_sqlcmd {
    meta:
       description = "Disclosed hacktool set (old stuff) - file sqlcmd.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 40
@@ -2000,6 +2045,7 @@ rule sig_238_sqlcmd {
 rule ASPack_ASPACK {
    meta:
       description = "Disclosed hacktool set (old stuff) - file ASPACK.EXE"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -2015,6 +2061,7 @@ rule ASPack_ASPACK {
 rule sig_238_2323 {
    meta:
       description = "Disclosed hacktool set (old stuff) - file 2323.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -2033,6 +2080,7 @@ rule sig_238_2323 {
 rule Jc_ALL_WinEggDropShell_rar_Folder_Install_2 {
    meta:
       description = "Disclosed hacktool set (old stuff) - file Install.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -2051,6 +2099,7 @@ rule Jc_ALL_WinEggDropShell_rar_Folder_Install_2 {
 rule sig_238_TFTPD32 {
    meta:
       description = "Disclosed hacktool set (old stuff) - file TFTPD32.EXE"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -2072,6 +2121,7 @@ rule sig_238_TFTPD32 {
 rule sig_238_iecv {
    meta:
       description = "Disclosed hacktool set (old stuff) - file iecv.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -2089,6 +2139,7 @@ rule sig_238_iecv {
 rule Antiy_Ports_1_21 {
    meta:
       description = "Disclosed hacktool set (old stuff) - file Antiy Ports 1.21.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -2104,6 +2155,7 @@ rule Antiy_Ports_1_21 {
 rule perlcmd_zip_Folder_cmd {
    meta:
       description = "Disclosed hacktool set (old stuff) - file cmd.cgi"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -2124,6 +2176,7 @@ rule perlcmd_zip_Folder_cmd {
 rule aspbackdoor_asp3 {
    meta:
       description = "Disclosed hacktool set (old stuff) - file asp3.txt"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -2144,6 +2197,7 @@ rule aspbackdoor_asp3 {
 rule sig_238_FPipe {
    meta:
       description = "Disclosed hacktool set (old stuff) - file FPipe.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -2162,6 +2216,7 @@ rule sig_238_FPipe {
 rule sig_238_concon {
    meta:
       description = "Disclosed hacktool set (old stuff) - file concon.com"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -2175,6 +2230,7 @@ rule sig_238_concon {
 rule aspbackdoor_regdll {
    meta:
       description = "Disclosed hacktool set (old stuff) - file regdll.asp"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -2191,6 +2247,7 @@ rule aspbackdoor_regdll {
 rule CleanIISLog {
    meta:
       description = "Disclosed hacktool set (old stuff) - file CleanIISLog.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -2212,6 +2269,7 @@ rule CleanIISLog {
 rule sqlcheck {
    meta:
       description = "Disclosed hacktool set (old stuff) - file sqlcheck.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -2229,6 +2287,7 @@ rule sqlcheck {
 rule sig_238_RunAsEx {
    meta:
       description = "Disclosed hacktool set (old stuff) - file RunAsEx.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -2247,6 +2306,7 @@ rule sig_238_RunAsEx {
 rule sig_238_nbtdump {
    meta:
       description = "Disclosed hacktool set (old stuff) - file nbtdump.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -2266,6 +2326,7 @@ rule sig_238_nbtdump {
 rule sig_238_Glass2k {
    meta:
       description = "Disclosed hacktool set (old stuff) - file Glass2k.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -2283,6 +2344,7 @@ rule sig_238_Glass2k {
 rule SplitJoin_V1_3_3_rar_Folder_3 {
    meta:
       description = "Disclosed hacktool set (old stuff) - file splitjoin.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -2298,6 +2360,7 @@ rule SplitJoin_V1_3_3_rar_Folder_3 {
 rule aspbackdoor_EDIT {
    meta:
       description = "Disclosed hacktool set (old stuff) - file EDIT.ASP"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -2317,6 +2380,7 @@ rule aspbackdoor_EDIT {
 rule aspbackdoor_entice {
    meta:
       description = "Disclosed hacktool set (old stuff) - file entice.asp"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -2334,6 +2398,7 @@ rule aspbackdoor_entice {
 rule FPipe2_0 {
    meta:
       description = "Disclosed hacktool set (old stuff) - file FPipe2.0.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -2352,6 +2417,7 @@ rule FPipe2_0 {
 rule InstGina {
    meta:
       description = "Disclosed hacktool set (old stuff) - file InstGina.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -2367,6 +2433,7 @@ rule InstGina {
 rule ArtTray_zip_Folder_ArtTray {
    meta:
       description = "Disclosed hacktool set (old stuff) - file ArtTray.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -2383,6 +2450,7 @@ rule ArtTray_zip_Folder_ArtTray {
 rule sig_238_findoor {
    meta:
       description = "Disclosed hacktool set (old stuff) - file findoor.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -2400,6 +2468,7 @@ rule sig_238_findoor {
 rule aspbackdoor_ipclear {
    meta:
       description = "Disclosed hacktool set (old stuff) - file ipclear.vbs"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -2417,6 +2486,7 @@ rule aspbackdoor_ipclear {
 rule WinEggDropShellFinal_zip_Folder_InjectT {
    meta:
       description = "Disclosed hacktool set (old stuff) - file InjectT.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -2434,6 +2504,7 @@ rule WinEggDropShellFinal_zip_Folder_InjectT {
 rule gina_zip_Folder_gina {
    meta:
       description = "Disclosed hacktool set (old stuff) - file gina.dll"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -2454,6 +2525,7 @@ rule gina_zip_Folder_gina {
 rule superscan3_0 {
    meta:
       description = "Disclosed hacktool set (old stuff) - file superscan3.0.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -2475,6 +2547,7 @@ rule superscan3_0 {
 rule sig_238_xsniff {
    meta:
       description = "Disclosed hacktool set (old stuff) - file xsniff.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -2496,6 +2569,7 @@ rule sig_238_xsniff {
 rule sig_238_fscan {
    meta:
       description = "Disclosed hacktool set (old stuff) - file fscan.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -2517,6 +2591,7 @@ rule sig_238_fscan {
 rule _iissample_nesscan_twwwscan {
    meta:
       description = "Disclosed hacktool set (old stuff) - from files iissample.exe, nesscan.exe, twwwscan.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -2543,6 +2618,7 @@ rule _iissample_nesscan_twwwscan {
 rule _FsHttp_FsPop_FsSniffer {
    meta:
       description = "Disclosed hacktool set (old stuff) - from files FsHttp.exe, FsPop.exe, FsSniffer.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "23.11.14"
       score = 60
@@ -2569,6 +2645,7 @@ rule _FsHttp_FsPop_FsSniffer {
 rule Ammyy_Admin_AA_v3 {
    meta:
       description = "Remote Admin Tool used by APT group Anunak (ru) - file AA_v3.4.exe and AA_v3.5.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "http://goo.gl/gkAg2E"
       date = "2014/12/22"
@@ -2595,6 +2672,7 @@ rule Ammyy_Admin_AA_v3 {
 rule LinuxHacktool_eyes_scanssh {
    meta:
       description = "Linux hack tools - file scanssh"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "not set"
       date = "2015/01/19"
@@ -2620,6 +2698,7 @@ rule LinuxHacktool_eyes_scanssh {
 rule LinuxHacktool_eyes_pscan2 {
    meta:
       description = "Linux hack tools - file pscan2"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "not set"
       date = "2015/01/19"
@@ -2638,6 +2717,7 @@ rule LinuxHacktool_eyes_pscan2 {
 rule LinuxHacktool_eyes_a {
    meta:
       description = "Linux hack tools - file a"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "not set"
       date = "2015/01/19"
@@ -2656,6 +2736,7 @@ rule LinuxHacktool_eyes_a {
 rule LinuxHacktool_eyes_mass {
    meta:
       description = "Linux hack tools - file mass"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "not set"
       date = "2015/01/19"
@@ -2673,6 +2754,7 @@ rule LinuxHacktool_eyes_mass {
 rule LinuxHacktool_eyes_pscan2_2 {
    meta:
       description = "Linux hack tools - file pscan2.c"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "not set"
       date = "2015/01/19"
@@ -2691,8 +2773,9 @@ rule CN_Portscan : APT
 {
     meta:
         description = "CN Port Scanner"
-        author = "Florian Roth"
-        release_date = "2013-11-29"
+        license = "https://creativecommons.org/licenses/by-nc/4.0/"
+      author = "Florian Roth"
+        date = "2013-11-29"
         confidential = false
       score = 70
     strings:
@@ -2705,8 +2788,9 @@ rule WMI_vbs : APT
 {
     meta:
         description = "WMI Tool - APT"
-        author = "Florian Roth"
-        release_date = "2013-11-29"
+        license = "https://creativecommons.org/licenses/by-nc/4.0/"
+      author = "Florian Roth"
+        date = "2013-11-29"
         confidential = false
       score = 70
     strings:
@@ -2718,6 +2802,7 @@ rule WMI_vbs : APT
 rule CN_Toolset__XScanLib_XScanLib_XScanLib {
    meta:
       description = "Detects a Chinese hacktool from a disclosed toolset - from files XScanLib.dll, XScanLib.dll, XScanLib.dll"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "http://qiannao.com/ls/905300366/33834c0c/"
       date = "2015/03/30"
@@ -2739,6 +2824,7 @@ rule CN_Toolset__XScanLib_XScanLib_XScanLib {
 rule CN_Toolset_NTscan_PipeCmd {
    meta:
       description = "Detects a Chinese hacktool from a disclosed toolset - file PipeCmd.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "http://qiannao.com/ls/905300366/33834c0c/"
       date = "2015/03/30"
@@ -2763,6 +2849,7 @@ rule CN_Toolset_NTscan_PipeCmd {
 rule CN_Toolset_LScanPortss_2 {
    meta:
       description = "Detects a Chinese hacktool from a disclosed toolset - file LScanPortss.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "http://qiannao.com/ls/905300366/33834c0c/"
       date = "2015/03/30"
@@ -2783,6 +2870,7 @@ rule CN_Toolset_LScanPortss_2 {
 rule CN_Toolset_sig_1433_135_sqlr {
    meta:
       description = "Detects a Chinese hacktool from a disclosed toolset - file sqlr.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "http://qiannao.com/ls/905300366/33834c0c/"
       date = "2015/03/30"
@@ -2800,6 +2888,7 @@ rule CN_Toolset_sig_1433_135_sqlr {
 rule DarkComet_Keylogger_File
 {
    meta:
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       description = "Looks like a keylogger file created by DarkComet Malware"
       date = "25.07.14"
@@ -2815,6 +2904,7 @@ rule DarkComet_Keylogger_File
 
 rule Mimikatz_Memory_Rule_1 : APT {
    meta:
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "12/22/2014"
       score = 70
@@ -2869,14 +2959,18 @@ rule mimikatz
       $exe_x64_1      = { 33 ff 4? 89 37 4? 8b f3 45 85 c? 74}
       $exe_x64_2      = { 4c 8b df 49 [0-3] c1 e3 04 48 [0-3] 8b cb 4c 03 [0-3] d8 }
 
+/*
       $dll_1         = { c7 0? 00 00 01 00 [4-14] c7 0? 01 00 00 00 }
       $dll_2         = { c7 0? 10 02 00 00 ?? 89 4? }
+*/
 
       $sys_x86      = { a0 00 00 00 24 02 00 00 40 00 00 00 [0-4] b8 00 00 00 6c 02 00 00 40 00 00 00 }
       $sys_x64      = { 88 01 00 00 3c 04 00 00 40 00 00 00 [0-4] e8 02 00 00 f8 02 00 00 40 00 00 00 }
 
    condition:
-      (all of ($exe_x86_*)) or (all of ($exe_x64_*)) or (all of ($dll_*)) or (any of ($sys_*))
+      (all of ($exe_x86_*)) or (all of ($exe_x64_*))
+      // or (all of ($dll_*))
+      or (any of ($sys_*))
 }
 
 rule wce
@@ -2891,29 +2985,6 @@ rule wce
       $hex_x64      = { ff f3 48 83 ec 30 48 8b d9 48 8d 15 [0-16] 50 72 69 6d 61 72 79 00 }
    condition:
       any of them
-}
-
-
-rule lsadump
-{
-   meta:
-      description      = "LSA dump programe (bootkey/syskey) - pwdump and others"
-      author         = "Benjamin DELPY (gentilkiwi)"
-
-   strings:
-      $str_sam_inc   = "\\Domains\\Account" ascii nocase
-      $str_sam_exc   = "\\Domains\\Account\\Users\\Names\\" ascii nocase
-      $hex_api_call_1   = { 41 b8 00 00 00 02 [0-64] (68 | ba) ff 07 0f 00 }
-      $hex_api_call_2   = { 68 00 00 00 02 [0-64] (68 | ba) ff 07 0f 00 }
-      $str_msv_lsa   = { 4c 53 41 53 52 56 2e 44 4c 4c 00 [0-32] 6d 73 76 31 5f 30 2e 64 6c 6c 00 }
-      $hex_bkey      = { 4b 53 53 4d [20-70] 05 00 01 00}
-
-      $fp1          = "Sysinternals" ascii
-      $fp2        = "Apple Inc." ascii wide
-   condition:
-      ( ($str_sam_inc and not $str_sam_exc) or $hex_api_call_1 or $hex_api_call_2 or $str_msv_lsa or $hex_bkey )
-      and not uint16(0) == 0x5a4d
-      and not 1 of ($fp*)
 }
 
 rule power_pe_injection
@@ -2931,6 +3002,7 @@ rule Mimikatz_Logfile
 {
    meta:
       description = "Detects a log file generated by malicious hack tool mimikatz"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       score = 80
       date = "2015/03/31"
@@ -2946,6 +3018,7 @@ rule Mimikatz_Logfile
 rule Mimikatz_Strings {
    meta:
       description = "Detects Mimikatz strings"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "not set"
       date = "2016-06-08"
@@ -2979,6 +3052,7 @@ rule Mimikatz_Strings {
 rule AppInitHook {
    meta:
       description = "AppInitGlobalHooks-Mimikatz - Hide Mimikatz From Process Lists - file AppInitHook.dll"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "https://goo.gl/Z292v6"
       date = "2015-07-15"
@@ -2999,6 +3073,7 @@ rule AppInitHook {
 rule VSSown_VBS {
    meta:
       description = "Detects VSSown.vbs script - used to export shadow copy elements like NTDS to take away and crack elsewhere"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "2015-10-01"
       score = 75
@@ -3016,6 +3091,7 @@ rule VSSown_VBS {
 rule Netview_Hacktool {
    meta:
       description = "Network domain enumeration tool - often used by attackers - file Nv.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "https://github.com/mubix/netview"
       date = "2016-03-07"
@@ -3039,6 +3115,7 @@ rule Netview_Hacktool {
 rule Netview_Hacktool_Output {
    meta:
       description = "Network domain enumeration tool output - often used by attackers - file filename.txt"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "https://github.com/mubix/netview"
       date = "2016-03-07"
@@ -3063,6 +3140,7 @@ rule Netview_Hacktool_Output {
 rule PSAttack_EXE {
    meta:
       description = "PSAttack - Powershell attack tool - file PSAttack.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "https://github.com/gdssecurity/PSAttack/releases/"
       date = "2016-03-09"
@@ -3082,6 +3160,7 @@ rule PSAttack_EXE {
 rule Powershell_Attack_Scripts {
    meta:
       description = "Powershell Attack Scripts"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       date = "2016-03-09"
       score = 70
@@ -3097,6 +3176,7 @@ rule Powershell_Attack_Scripts {
 rule PSAttack_ZIP {
    meta:
       description = "PSAttack - Powershell attack tool - file PSAttack.zip"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "https://github.com/gdssecurity/PSAttack/releases/"
       date = "2016-03-09"
@@ -3120,6 +3200,7 @@ rule PSAttack_ZIP {
 rule Linux_Portscan_Shark_1 {
    meta:
       description = "Detects Linux Port Scanner Shark"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "Virustotal Research - see https://github.com/Neo23x0/Loki/issues/35"
       date = "2016-04-01"
@@ -3137,6 +3218,7 @@ rule Linux_Portscan_Shark_1 {
 rule Linux_Portscan_Shark_2 {
    meta:
       description = "Detects Linux Port Scanner Shark"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "Virustotal Research - see https://github.com/Neo23x0/Loki/issues/35"
       date = "2016-04-01"
@@ -3161,6 +3243,7 @@ rule Linux_Portscan_Shark_2 {
 rule dnscat2_Hacktool {
    meta:
       description = "Detects dnscat2 - from files dnscat, dnscat2.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "https://downloads.skullsecurity.org/dnscat2/"
       date = "2016-05-15"
@@ -3180,6 +3263,7 @@ rule dnscat2_Hacktool {
 rule WCE_in_memory {
    meta:
       description = "Detects Windows Credential Editor (WCE) in memory (and also on disk)"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "Internal Research"
       score = 80
@@ -3194,6 +3278,7 @@ rule WCE_in_memory {
 rule pstgdump {
    meta:
       description = "Detects a tool used by APT groups - file pstgdump.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "http://goo.gl/igxLyF"
       date = "2016-09-08"
@@ -3212,6 +3297,7 @@ rule pstgdump {
 rule lsremora {
    meta:
       description = "Detects a tool used by APT groups"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "http://goo.gl/igxLyF"
       date = "2016-09-08"
@@ -3234,6 +3320,7 @@ rule lsremora {
 rule servpw {
    meta:
       description = "Detects a tool used by APT groups - file servpw.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "http://goo.gl/igxLyF"
       date = "2016-09-08"
@@ -3253,6 +3340,7 @@ rule servpw {
 rule fgexec {
    meta:
       description = "Detects a tool used by APT groups - file fgexec.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "http://goo.gl/igxLyF"
       date = "2016-09-08"
@@ -3269,6 +3357,7 @@ rule fgexec {
 rule cachedump {
    meta:
       description = "Detects a tool used by APT groups - from files cachedump.exe, cachedump64.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "http://goo.gl/igxLyF"
       date = "2016-09-08"
@@ -3289,6 +3378,7 @@ rule cachedump {
 rule PwDump_B {
    meta:
       description = "Detects a tool used by APT groups - file PwDump.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "http://goo.gl/igxLyF"
       date = "2016-09-08"
@@ -3318,6 +3408,7 @@ rule PwDump_B {
 rule MSBuild_Mimikatz_Execution_via_XML {
    meta:
       description = "Detects an XML that executes Mimikatz on an endpoint via MSBuild"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "https://gist.github.com/subTee/c98f7d005683e616560bda3286b6a0d8#file-katz-xml"
       date = "2016-10-07"
@@ -3346,6 +3437,7 @@ rule MSBuild_Mimikatz_Execution_via_XML {
 rule Fscan_Portscanner {
    meta:
       description = "Fscan port scanner scan output / strings"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "https://twitter.com/JamesHabben/status/817112447970480128"
       date = "2017-01-06"
@@ -3370,6 +3462,7 @@ rule Fscan_Portscanner {
 rule WPR_loader_EXE {
    meta:
       description = "Windows Password Recovery - file loader.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "Internal Research"
       date = "2017-03-15"
@@ -3390,6 +3483,7 @@ rule WPR_loader_EXE {
 rule WPR_loader_DLL {
    meta:
       description = "Windows Password Recovery - file loader64.dll"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "Internal Research"
       date = "2017-03-15"
@@ -3423,6 +3517,7 @@ rule WPR_loader_DLL {
 rule WPR_Passscape_Loader {
    meta:
       description = "Windows Password Recovery - file ast.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "Internal Research"
       date = "2017-03-15"
@@ -3441,6 +3536,7 @@ rule WPR_Passscape_Loader {
 rule WPR_Asterisk_Hook_Library {
    meta:
       description = "Windows Password Recovery - file ast64.dll"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "Internal Research"
       date = "2017-03-15"
@@ -3463,6 +3559,7 @@ rule WPR_Asterisk_Hook_Library {
 rule WPR_WindowsPasswordRecovery_EXE {
    meta:
       description = "Windows Password Recovery - file wpr.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "Internal Research"
       date = "2017-03-15"
@@ -3492,6 +3589,7 @@ rule WPR_WindowsPasswordRecovery_EXE {
 rule WPR_WindowsPasswordRecovery_EXE_64 {
    meta:
       description = "Windows Password Recovery - file ast64.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "Internal Research"
       date = "2017-03-15"
@@ -3519,6 +3617,7 @@ rule WPR_WindowsPasswordRecovery_EXE_64 {
 rule BeyondExec_RemoteAccess_Tool {
    meta:
       description = "Detects BeyondExec Remote Access Tool - file rexesvr.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "https://goo.gl/BvYurS"
       date = "2017-03-17"
@@ -3537,6 +3636,7 @@ rule BeyondExec_RemoteAccess_Tool {
 rule Mimikatz_Gen_Strings {
    meta:
       description = "Detects Mimikatz by using some special strings"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "Internal Research"
       date = "2017-06-19"
@@ -3569,6 +3669,7 @@ rule Mimikatz_Gen_Strings {
 rule Disclosed_0day_POCs_lpe {
    meta:
       description = "Detects POC code from disclosed 0day hacktool set"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "Disclosed 0day Repos"
       date = "2017-07-07"
@@ -3590,6 +3691,7 @@ rule Disclosed_0day_POCs_lpe {
 rule Disclosed_0day_POCs_exploit {
    meta:
       description = "Detects POC code from disclosed 0day hacktool set"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "Disclosed 0day Repos"
       date = "2017-07-07"
@@ -3604,6 +3706,7 @@ rule Disclosed_0day_POCs_exploit {
 rule Disclosed_0day_POCs_InjectDll {
    meta:
       description = "Detects POC code from disclosed 0day hacktool set"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "Disclosed 0day Repos"
       date = "2017-07-07"
@@ -3621,6 +3724,7 @@ rule Disclosed_0day_POCs_InjectDll {
 rule Disclosed_0day_POCs_payload_MSI {
    meta:
       description = "Detects POC code from disclosed 0day hacktool set"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "Disclosed 0day Repos"
       date = "2017-07-07"
@@ -3636,6 +3740,7 @@ rule Disclosed_0day_POCs_payload_MSI {
 rule Disclosed_0day_POCs_injector {
    meta:
       description = "Detects POC code from disclosed 0day hacktool set"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "Disclosed 0day Repos"
       date = "2017-07-07"
@@ -3656,6 +3761,7 @@ rule Disclosed_0day_POCs_injector {
 rule Disclosed_0day_POCs_lpe_2 {
    meta:
       description = "Detects POC code from disclosed 0day hacktool set"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "Disclosed 0day Repos"
       date = "2017-07-07"
@@ -3671,6 +3777,7 @@ rule Disclosed_0day_POCs_lpe_2 {
 rule Disclosed_0day_POCs_shellcodegenerator {
    meta:
       description = "Detects POC code from disclosed 0day hacktool set"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "Disclosed 0day Repos"
       date = "2017-07-07"
@@ -3684,6 +3791,7 @@ rule Disclosed_0day_POCs_shellcodegenerator {
 rule SecurityXploded_Producer_String {
    meta:
       description = "Detects hacktools by SecurityXploded"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "http://securityxploded.com/browser-password-dump.php"
       date = "2017-07-13"
@@ -3708,6 +3816,7 @@ rule SecurityXploded_Producer_String {
 rule Kekeo_Hacktool {
    meta:
       description = "Detects Kekeo Hacktool"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "https://github.com/gentilkiwi/kekeo/releases"
       date = "2017-07-21"
@@ -3734,6 +3843,7 @@ rule Kekeo_Hacktool {
 rule AllTheThings {
    meta:
       description = "Detects AllTheThings"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "https://github.com/subTee/AllTheThings"
       date = "2017-07-27"
@@ -3752,6 +3862,7 @@ rule AllTheThings {
 rule Impacket_Keyword {
    meta:
       description = "Detects Impacket Keyword in Executable"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "Internal Research"
       date = "2017-08-04"
@@ -3780,6 +3891,7 @@ import "pe"
 rule PasswordsPro {
    meta:
       description = "Auto-generated rule - file PasswordsPro.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "PasswordPro"
       date = "2017-08-27"
@@ -3798,6 +3910,7 @@ rule PasswordsPro {
 rule PasswordPro_NTLM_DLL {
    meta:
       description = "Auto-generated rule - file NTLM.dll"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "PasswordPro"
       date = "2017-08-27"
@@ -3826,6 +3939,7 @@ rule PasswordPro_NTLM_DLL {
 rule KeeThief_PS {
    meta:
       description = "Detects component of KeeTheft - KeePass dump tool - file KeeThief.ps1"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "https://github.com/HarmJ0y/KeeThief"
       date = "2017-08-29"
@@ -3843,6 +3957,7 @@ rule KeeThief_PS {
 rule KeeTheft_EXE {
    meta:
       description = "Detects component of KeeTheft - KeePass dump tool - file KeeTheft.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "https://github.com/HarmJ0y/KeeThief"
       date = "2017-08-29"
@@ -3856,12 +3971,13 @@ rule KeeTheft_EXE {
       $x6 = "*** Interesting... there are multiple .NET runtimes loaded in KeePass" fullword wide
       $x7 = "GetKcpPasswordInfo" fullword ascii
    condition:
-      ( uint16(0) == 0x5a4d and filesize < 200KB and 1 of them )
+      ( uint16(0) == 0x5a4d and filesize < 200KB and 2 of them )
 }
 
 rule KeeTheft_Out_Shellcode {
    meta:
       description = "Detects component of KeeTheft - KeePass dump tool - file Out-Shellcode.ps1"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "https://github.com/HarmJ0y/KeeThief"
       date = "2017-08-29"
@@ -3884,6 +4000,7 @@ rule KeeTheft_Out_Shellcode {
 rule Sharpire {
    meta:
       description = "Auto-generated rule - file Sharpire.exe"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "https://github.com/0xbadjuju/Sharpire"
       date = "2017-09-23"
@@ -3914,6 +4031,7 @@ rule Sharpire {
 rule Invoke_Metasploit {
    meta:
       description = "Detects Invoke-Metasploit Payload"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "https://github.com/jaredhaight/Invoke-MetasploitPayload/blob/master/Invoke-MetasploitPayload.ps1"
       date = "2017-09-23"
@@ -3929,6 +4047,7 @@ rule Invoke_Metasploit {
 rule PowerShell_Mal_HackTool_Gen {
    meta:
       description = "Detects PowerShell hack tool samples - generic PE loader"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "Internal Research"
       date = "2017-11-02"
@@ -3945,6 +4064,7 @@ rule PowerShell_Mal_HackTool_Gen {
 rule Sig_RemoteAdmin_1 {
    meta:
       description = "Detects strings from well-known APT malware"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "Internal Research"
       date = "2017-12-03"
@@ -3959,14 +4079,479 @@ rule Sig_RemoteAdmin_1 {
 rule RemCom_RemoteCommandExecution {
    meta:
       description = "Detects strings from RemCom tool"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "https://goo.gl/tezXZt"
       date = "2017-12-28"
-      score = 55
+      score = 50
    strings:
       $ = "\\\\.\\pipe\\%s%s%d"
       $ = "%s\\pipe\\%s%s%d%s"
       $ = "\\ADMIN$\\System32\\%s%s"
    condition:
       1 of them
+}
+
+rule Crackmapexec_EXE {
+   meta:
+      description = "Detects CrackMapExec hack tool"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
+      author = "Florian Roth"
+      reference = "Internal Research"
+      date = "2018-04-06"
+      score = 85
+      hash1 = "371f104b7876b9080c519510879235f36edb6668097de475949b84ab72ee9a9a"
+   strings:
+      $s1 = "core.scripts.secretsdump(" fullword ascii
+      $s2 = "core.scripts.samrdump(" fullword ascii
+      $s3 = "core.uacdump(" fullword ascii
+   condition:
+      uint16(0) == 0x5a4d and filesize < 10000KB and 2 of them
+}
+
+rule SUSP_Imphash_PassRevealer_PY_EXE {
+   meta:
+      description = "Detects an imphash used by password revealer and hack tools"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
+      author = "Florian Roth"
+      reference = "Internal Research"
+      date = "2018-04-06"
+      score = 40
+      hash1 = "371f104b7876b9080c519510879235f36edb6668097de475949b84ab72ee9a9a"
+   strings:
+      $fp1 = "Assmann Electronic GmbH" ascii wide
+      $fp2 = "Oculus VR" ascii wide
+   condition:
+      uint16(0) == 0x5a4d and filesize < 10000KB
+      and pe.imphash() == "ed61beebc8d019dd9bec823e2d694afd"
+      and not 1 of ($fp*)
+}
+
+rule MAL_Unknown_PWDumper_Apr18_3 {
+   meta:
+      description = "Detects sample from unknown sample set - IL origin"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
+      author = "Florian Roth"
+      reference = "Internal Research"
+      date = "2018-04-06"
+      hash1 = "d435e7b6f040a186efeadb87dd6d9a14e038921dc8b8658026a90ae94b4c8b05"
+      hash2 = "8c35c71838f34f7f7a40bf06e1d2e14d58d9106e6d4e6f6e9af732511a126276"
+   strings:
+      $s1 = "loaderx86.dll" fullword ascii
+      $s2 = "tcpsvcs.exe" fullword wide
+      $s3 = "%Program Files, Common FOLDER%" fullword wide
+      $s4 = "%AllUsers, ApplicationData FOLDER%" fullword wide
+      $s5 = "loaderx86" fullword ascii
+      $s6 = "TNtDllHook$" fullword ascii
+   condition:
+      uint16(0) == 0x5a4d and filesize < 3000KB and all of them
+}
+
+rule ProcessInjector_Gen {
+   meta:
+      description = "Detects a process injection utility that can be used ofr good and bad purposes"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
+      author = "Florian Roth"
+      reference = "https://github.com/cuckoosandbox/monitor/blob/master/bin/inject.c"
+      date = "2018-04-23"
+      score = 60
+      hash1 = "456c1c25313ce2e2eedf24fdcd4d37048bcfff193f6848053cbb3b5e82cd527d"
+   strings:
+      $x1 = "Error injecting remote thread in process:" fullword ascii
+      $s5 = "[-] Error getting access to process: %ld!" fullword ascii
+      $s6 = "--process-name <name>  Process name to inject" fullword ascii
+      $s12 = "No injection target has been provided!" fullword ascii
+      $s17 = "[-] An app path is required when not injecting!" fullword ascii
+   condition:
+      uint16(0) == 0x5a4d and filesize < 50KB and (
+         pe.imphash() == "d27e0fa013d7ae41be12aaf221e41f9b" or
+         1 of them
+      ) or 3 of them
+}
+
+rule Lazagne_PW_Dumper {
+   meta:
+      description = "Detects Lazagne PW Dumper"
+      author = "Markus Neis / Florian Roth"
+      reference = "https://github.com/AlessandroZ/LaZagne/releases/"
+      date = "2018-03-22"
+      score = 70
+   strings:
+      $s1 = "Crypto.Hash" fullword ascii
+      $s2 = "laZagne" fullword ascii
+      $s3 = "impacket.winregistry" fullword ascii
+   condition:
+      3 of them
+}
+
+rule HKTL_shellpop_TCLsh {
+   meta:
+      description = "Detects suspicious TCLsh popshell"
+      author = "Tobias Michalski"
+      reference = "https://github.com/0x00-0x00/ShellPop"
+      date = "2018-05-18"
+      hash1 = "9f49d76d70d14bbe639a3c16763d3b4bee92c622ecb1c351cb4ea4371561e133"
+   strings:
+      $s1 = "{ puts -nonewline $s \"shell>\";flush $s;gets $s c;set e \"exec $c\";if" ascii
+   condition:
+      filesize < 1KB and 1 of them
+}
+
+rule HKTL_shellpop_ruby {
+   meta:
+      description = "Detects suspicious ruby shellpop"
+      author = "Tobias Michalski"
+      reference = "https://github.com/0x00-0x00/ShellPop"
+      date = "2018-05-18"
+      hash1 = "6b425b37f3520fd8c778928cc160134a293db0ce6d691e56a27894354b04f783"
+   strings:
+      $x1 = ");while(cmd=c.gets);IO.popen(cmd,'r'){" ascii
+   condition:
+      filesize < 1KB and all of them
+}
+
+rule HKTL_shellpop_awk {
+   meta:
+      description = "Detects suspicious AWK Shellpop"
+      author = "Tobias Michalski"
+      reference = "https://github.com/0x00-0x00/ShellPop"
+      date = "2018-05-18"
+      hash1 = "7513a0a0ba786b0e22a9a7413491b4011f60af11253c596fa6857fb92a6736fc"
+   strings:
+      $s1 = "awk 'BEGIN {s = \"/inet/tcp/0/" ascii
+      $s2 = "; while(42) " ascii
+   condition:
+      filesize < 1KB and 1 of them
+}
+
+rule HKTL_shellpop_Netcat_UDP {
+   meta:
+      description = "Detects suspicious netcat popshell"
+      author = "Tobias Michalski"
+      reference = "https://github.com/0x00-0x00/ShellPop"
+      date = "2018-05-18"
+      hash1 = "d823ad91b315c25893ce8627af285bcf4e161f9bbf7c070ee2565545084e88be"
+   strings:
+      $s1 = "mkfifo fifo ; nc.traditional -u" ascii
+      $s2 = "< fifo | { bash -i; } > fifo" fullword ascii
+   condition:
+      filesize < 1KB and 1 of them
+}
+
+rule HKTL_shellpop_socat {
+   meta:
+      description = "Detects suspicious socat popshell"
+      author = "Tobias Michalski"
+      reference = "https://github.com/0x00-0x00/ShellPop"
+      date = "2018-05-18"
+      hash1 = "267f69858a5490efb236628260b275ad4bbfeebf4a83fab8776e333ca706a6a0"
+   strings:
+      $s1 = "socat tcp-connect" ascii
+      $s2 = ",pty,stderr,setsid,sigint,sane" ascii
+   condition:
+      filesize < 1KB and 2 of them
+}
+
+rule HKTL_shellpop_Perl {
+   meta:
+      description = "Detects Shellpop Perl script"
+      author = "Tobias Michalski"
+      reference = "https://github.com/0x00-0x00/ShellPop"
+      date = "2018-05-18"
+      hash1 = "32c3e287969398a070adaad9b819ee9228174c9cb318d230331d33cda51314eb"
+   strings:
+      $ = "perl -e 'use IO::Socket::INET;$|=1;my ($s,$r);" ascii
+      $ = ";STDIN->fdopen(\\$c,r);$~->fdopen(\\$c,w);s" ascii
+   condition:
+      filesize < 2KB and 1 of them
+}
+
+rule HKTL_shellpop_Python {
+   meta:
+      description = "Detects malicious python shell"
+      author = "Tobias Michalski"
+      reference = "https://github.com/0x00-0x00/ShellPop"
+      date = "2018-05-18"
+      hash1 = "aee1c9e45a1edb5e462522e266256f68313e2ff5956a55f0a84f33bc6baa980b"
+   strings:
+      $ = "os.putenv('HISTFILE', '/dev/null');" ascii
+   condition:
+      filesize < 2KB and 1 of them
+}
+
+rule HKTL_shellpop_PHP_TCP {
+   meta:
+      description = "Detects malicious PHP shell"
+      author = "Tobias Michalski"
+      reference = "https://github.com/0x00-0x00/ShellPop"
+      date = "2018-05-18"
+      hash1 = "0412e1ab9c672abecb3979a401f67d35a4a830c65f34bdee3f87e87d060f0290"
+   strings:
+      $x1 = "php -r \"\\$sock=fsockopen" ascii
+      $x2 = ";exec('/bin/sh -i <&3 >&3 2>&3');\"" ascii
+   condition:
+      filesize < 3KB and all of them
+}
+
+rule HKTL_shellpop_Powershell_TCP {
+   meta:
+      description = "Detects malicious powershell"
+      author = "Tobias Michalski"
+      reference = "https://github.com/0x00-0x00/ShellPop"
+      date = "2018-05-18"
+      hash1 = "8328806700696ffe8cc37a0b81a67a6e9c86bb416364805b8aceaee5db17333f"
+   strings:
+      $ = "Something went wrong with execution of command on the target" ascii
+      $ = ";[byte[]]$bytes = 0..65535|%{0};$sendbytes =" ascii
+   condition:
+      filesize < 3KB and 1 of them
+}
+
+rule SUSP_Powershell_ShellCommand_May18_1 {
+   meta:
+      description = "Detects a supcicious powershell commandline"
+      author = "Tobias Michalski"
+      reference = "https://github.com/0x00-0x00/ShellPop"
+      date = "2018-05-18"
+      hash1 = "8328806700696ffe8cc37a0b81a67a6e9c86bb416364805b8aceaee5db17333f"
+   strings:
+      $x1 = "powershell -nop -ep bypass -Command" ascii
+   condition:
+      filesize < 3KB and 1 of them
+
+}
+
+rule HKTL_shellpop_Telnet_TCP {
+   meta:
+      description = "Detects malicious telnet shell"
+      author = "Tobias Michalski"
+      reference = "https://github.com/0x00-0x00/ShellPop"
+      date = "2018-05-18"
+      hash1 = "cf5232bae0364606361adafab32f19cf56764a9d3aef94890dda9f7fcd684a0e"
+   strings:
+      $x1 = "if [ -e /tmp/f ]; then rm /tmp/f;" ascii
+      $x2 = "0</tmp/f|/bin/bash 1>/tmp/f" fullword ascii
+   condition:
+      filesize < 3KB and 1 of them
+}
+
+rule SUSP_shellpop_Bash {
+   meta:
+      description = "Detects susupicious bash command"
+      author = "Tobias Michalski"
+      reference = "https://github.com/0x00-0x00/ShellPop"
+      date = "2018-05-18"
+      hash1 = "36fad575a8bc459d0c2e3ad626e97d5cf4f5f8bedc56b3cc27dd2f7d88ed889b"
+   strings:
+      $ = "/bin/bash -i >& /dev/tcp/" ascii
+   condition:
+      1 of them
+}
+
+rule HKTL_shellpop_netcat {
+   meta:
+      description = "Detects suspcious netcat shellpop"
+      author = "Tobias Michalski"
+      reference = "https://github.com/0x00-0x00/ShellPop"
+      date = "2018-05-18"
+      hash1 = "98e3324f4c096bb1e5533114249a9e5c43c7913afa3070488b16d5b209e015ee"
+   strings:
+      $s1 = "if [ -e /tmp/f ]; then rm /tmp/f;"  ascii
+      $s2 = "fi;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc" ascii
+      $s4 = "mknod /tmp/f p && nc" ascii
+      $s5 = "</tmp/f|/bin/bash 1>/tmp/f"  ascii
+    condition:
+      filesize < 2KB and 1 of them
+}
+
+
+rule HKTL_beRootexe {
+   meta:
+      description = "Detects beRoot.exe which checks common Windows missconfigurations"
+      author = "yarGen Rule Generator"
+      reference = "https://github.com/AlessandroZ/BeRoot/tree/master/Windows"
+      date = "2018-07-25"
+      hash1 = "865b3b8ec9d03d3475286c3030958d90fc72b21b0dca38e5bf8e236602136dd7"
+   strings:
+      $s1 = "checks.webclient.secretsdump(" fullword ascii
+      $s2 = "beroot.modules" fullword ascii
+      $s3 = "beRoot.exe.manifest" fullword ascii
+   condition:
+      ( uint16(0) == 0x5a4d and
+        filesize < 18000KB and
+        1 of them)
+}
+
+rule HKTL_beRootexe_output {
+   meta:
+      description = "Detects the output of beRoot.exe"
+      author = "Tobias Michalski"
+      reference = "https://github.com/AlessandroZ/BeRoot/tree/master/Windows"
+      date = "2018-07-25"
+   strings:
+      $s1 = "permissions: {'change_config'" fullword wide
+      $s2 = "Full path: C:\\Windows\\system32\\msiexec.exe /V" fullword wide
+      $s3 = "Full path: C:\\Windows\\system32\\svchost.exe -k DevicesFlow" fullword wide
+      $s4 = "! BANG BANG !" fullword wide
+   condition:
+      filesize < 400KB and 3 of them
+}
+
+rule HKTL_EmbeddedPDF {
+   meta:
+      description = "Detects Embedded PDFs which can start malicious content"
+      author = "Tobias Michalski"
+      reference = "https://twitter.com/infosecn1nja/status/1021399595899731968?s=12"
+      date = "2018-07-25"
+   strings:
+      $x1 = "/Type /Action\n /S /JavaScript\n /JS (this.exportDataObject({" fullword ascii
+
+      $s1 = "(This PDF document embeds file" fullword ascii
+      $s2 = "/Names << /EmbeddedFiles << /Names" fullword ascii
+      $s3 = "/Type /EmbeddedFile" fullword ascii
+
+   condition:
+      uint16(0) == 0x5025 and
+      2 of ($s*) and $x1
+}
+
+rule HTKL_BlackBone_DriverInjector {
+   meta:
+      description = "Detects BlackBone Driver injector"
+      author = "Florian Roth"
+      reference = "https://github.com/DarthTon/Blackbone"
+      date = "2018-09-11"
+      score = 60
+      hash1 = "8062a4284c719412270614458150cb4abbdf77b2fc35f770ce9c45d10ccb1f4d"
+      hash2 = "2d2fc27200c22442ac03e2f454b6e1f90f2bbc17017f05b09f7824fac6beb14b"
+      hash3 = "e45da157483232d9c9c72f44b13fca2a0d268393044db00104cc1afe184ca8d1"
+   strings:
+      $s1 = "=INITtH=PAGEtA" fullword ascii
+      $s2 = "BBInjectDll" fullword ascii
+      $s3 = "LdrLoadDll" fullword ascii
+      $s4 = "\\??\\pipe\\%ls" fullword wide
+      $s5 = "Failed to retrieve Kernel base address. Aborting" fullword ascii
+
+      $x2 = "BlackBone: %s: APC injection failed with status 0x%X" fullword ascii
+      $x3 = "BlackBone: PDE_BASE/PTE_BASE not found " fullword ascii
+      $x4 = "%s: Invalid injection type specified - %d" fullword ascii
+      $x6 = "Trying to map C:\\windows\\system32\\cmd.exe into current process" fullword wide
+      $x7 = "\\BlackBoneDrv\\bin\\" ascii
+      $x8 = "DosDevices\\BlackBone" wide
+   condition:
+      uint16(0) == 0x5a4d and filesize < 8000KB and ( 3 of them or 1 of ($x*) )
+}
+
+rule HKTL_SqlMap {
+   meta:
+      description = "Detects sqlmap hacktool"
+      author = "Florian Roth"
+      reference = "https://github.com/sqlmapproject/sqlmap"
+      date = "2018-10-09"
+      hash1 = "9444478b03caf7af853a64696dd70083bfe67f76aa08a16a151c00aadb540fa8"
+   strings:
+      $x1 = "if cmdLineOptions.get(\"sqlmapShell\"):" fullword ascii
+      $x2 = "if conf.get(\"dumper\"):" fullword ascii
+   condition:
+      filesize < 50KB and 1 of them
+}
+
+rule HKTL_SqlMap_backdoor {
+   meta:
+      description = "Detects SqlMap backdoors"
+      author = "Florian Roth"
+      reference = "https://github.com/sqlmapproject/sqlmap"
+      date = "2018-10-09"
+   condition:
+      ( uint32(0) == 0x8e859c07 or
+         uint32(0) == 0x2d859c07 or
+         uint32(0) == 0x92959c07 or
+         uint32(0) == 0x929d9c07 or
+         uint32(0) == 0x29959c07 or
+         uint32(0) == 0x2b8d9c07 or
+         uint32(0) == 0x2b859c07 or
+         uint32(0) == 0x28b59c07 ) and filesize < 2KB
+}
+
+rule HKTL_Lazagne_PasswordDumper_Dec18_1 {
+   meta:
+      description = "Detects password dumper Lazagne often used by middle eastern threat groups"
+      author = "Florian Roth"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
+      reference = "https://www.symantec.com/blogs/threat-intelligence/seedworm-espionage-group"
+      date = "2018-12-11"
+      score = 85
+      hash1 = "1205f5845035e3ee30f5a1ced5500d8345246ef4900bcb4ba67ef72c0f79966c"
+      hash2 = "884e991d2066163e02472ea82d89b64e252537b28c58ad57d9d648b969de6a63"
+      hash3 = "bf8f30031769aa880cdbe22bc0be32691d9f7913af75a5b68f8426d4f0c7be50"
+   strings:
+      $s1 = "softwares.opera(" fullword ascii
+      $s2 = "softwares.mozilla(" fullword ascii
+      $s3 = "config.dico(" fullword ascii
+      $s4 = "softwares.chrome(" fullword ascii
+      $s5 = "softwares.outlook(" fullword ascii
+   condition:
+      uint16(0) == 0x5a4d and filesize < 17000KB and 1 of them
+}
+
+rule HKTL_Lazagne_Gen_18 {
+   meta:
+      description = "Detects Lazagne password extractor hacktool"
+      author = "Florian Roth"
+      reference = "https://github.com/AlessandroZ/LaZagne"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
+      date = "2018-12-11"
+      score = 80
+      hash1 = "51121dd5fbdfe8db7d3a5311e3e9c904d644ff7221b60284c03347938577eecf"
+   strings:
+      $x1 = "lazagne.config.powershell_execute(" fullword ascii
+      $x2 = "creddump7.win32." ascii
+      $x3 = "lazagne.softwares.windows.hashdump" ascii
+      $x4 = ".softwares.memory.libkeepass.common(" ascii
+   condition:
+      2 of them
+}
+
+rule HKTL_NoPowerShell {
+   meta:
+      description = "Detects NoPowerShell hack tool"
+      author = "Florian Roth"
+      reference = "https://github.com/bitsadmin/nopowershell"
+      date = "2018-12-28"
+      hash1 = "2dad091dd00625762a7590ce16c3492cbaeb756ad0e31352a42751deb7cf9e70"
+   strings:
+      $x1 = "\\NoPowerShell.pdb" fullword ascii
+      $x2 = "Invoke-WmiMethod -Class Win32_Process -Name Create \"cmd" fullword wide
+      $x3 = "ls C:\\Windows\\System32 -Include *.exe | select -First 10 Name,Length" fullword wide
+      $x4 = "ls -Recurse -Force C:\\Users\\ -Include *.kdbx" fullword wide
+      $x5 = "NoPowerShell.exe" fullword wide
+   condition:
+      1 of them
+}
+rule HKTL_htran_go {
+   meta:
+      author = "Jeff Beley"
+      hash1 = "4acbefb9f7907c52438ebb3070888ddc8cddfe9e3849c9d0196173a422b9035f"
+      description = "Detects go based htran variant"
+      date = "2019-01-09"
+   strings:
+      $s1 = "https://github.com/cw1997/NATBypass" fullword ascii
+      $s2 = "-slave ip1:port1 ip2:port2" fullword ascii
+      $s3 = "-tran port1 ip:port2" fullword ascii
+   condition:
+      uint16(0) == 0x5a4d and filesize < 7000KB and 1 of them
+}
+
+rule SUSP_Katz_PDB {
+   meta:
+      description = "Detects suspicious PDB in file"
+      author = "Florian Roth"
+      reference = "Internal Research"
+      date = "2019-02-04"
+      hash1 = "6888ce8116c721e7b2fc3d7d594666784cf38a942808f35e309a48e536d8e305"
+   strings:
+      $s1 = /\\Release\\[a-z]{0,8}katz.pdb/
+      $s2 = /\\Debug\\[a-z]{0,8}katz.pdb/
+   condition:
+      uint16(0) == 0x5a4d and filesize < 6000KB and all of them
 }

@@ -15,10 +15,9 @@ rule derusbi_kernel
     strings:
         $token1 = "$$$--Hello"
         $token2 = "Wrod--$$$"
-        $cfg = "XXXXXXXXXXXXXXX"
         $class = ".?AVPCC_BASEMOD@@"
     condition:
-        uint16(0) == 0x5A4D and $token1 and $token2 and $cfg and $class
+        uint16(0) == 0x5A4D and $token1 and $token2 and $class
 }
 
 rule derusbi_linux
@@ -47,6 +46,7 @@ rule derusbi_linux
 rule Derusbi_Kernel_Driver_WD_UDFS {
 	meta:
 		description = "Detects Derusbi Kernel Driver"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		reference = "http://blog.airbuscybersecurity.com/post/2015/11/Newcomers-in-the-Derusbi-family"
 		date = "2015-12-15"
@@ -78,6 +78,7 @@ rule Derusbi_Kernel_Driver_WD_UDFS {
 rule Derusbi_Code_Signing_Cert {
 	meta:
 		description = "Detects an executable signed with a certificate also used for Derusbi Trojan - suspicious"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		reference = "http://blog.airbuscybersecurity.com/post/2015/11/Newcomers-in-the-Derusbi-family"
 		date = "2015-12-15"
@@ -93,6 +94,7 @@ rule Derusbi_Code_Signing_Cert {
 rule XOR_4byte_Key {
 	meta:
 		description = "Detects an executable encrypted with a 4 byte XOR (also used for Derusbi Trojan)"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		reference = "http://blog.airbuscybersecurity.com/post/2015/11/Newcomers-in-the-Derusbi-family"
 		date = "2015-12-15"
@@ -116,6 +118,7 @@ rule XOR_4byte_Key {
 rule Derusbi_Backdoor_Mar17_1 {
    meta:
       description = "Detects a variant of the Derusbi backdoor"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "Internal Research"
       date = "2017-03-03"

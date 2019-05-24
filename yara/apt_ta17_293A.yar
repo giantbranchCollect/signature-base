@@ -73,17 +73,21 @@ rule TA17_293A_malware_1 {
         1 of ($x*)
 }
 
-rule TA17_293A_malware_2 {
-    meta:
-        description = "rule detects malware"
-        author = "other"
-        reference = "https://www.us-cert.gov/ncas/alerts/TA17-293A"
-    strings:
-        $api_hash = { 8A 08 84 C9 74 0D 80 C9 60 01 CB C1 E3 01 03 45 10 EB ED }
-        $http_push = "X-mode: push" nocase
-        $http_pop = "X-mode: pop" nocase
-    condition:
-        any of them
+rule TA17_293A_energetic_bear_api_hashing_tool {
+   meta:
+      description = "Energetic Bear API Hashing Tool"
+      assoc_report = "DHS Report TA17-293A"
+      author = "CERT RE Team"
+      version = "2"
+   strings:
+      $api_hash_func_v1 = { 8A 08 84 C9 74 ?? 80 C9 60 01 CB C1 E3 01 03 45 10 EB ED }
+      $api_hash_func_v2 = { 8A 08 84 C9 74 ?? 80 C9 60 01 CB C1 E3 01 03 44 24 14 EB EC }
+      $api_hash_func_x64 = { 8A 08 84 C9 74 ?? 80 C9 60 48 01 CB 48 C1 E3 01 48 03 45 20 EB EA }
+
+      $http_push = "X-mode: push" nocase
+      $http_pop = "X-mode: pop" nocase
+   condition:
+      $api_hash_func_v1 or $api_hash_func_v2 or $api_hash_func_x64 and (uint16(0) == 0x5a4d or $http_push or $http_pop)
 }
 
 rule TA17_293A_Query_XML_Code_MAL_DOC_PT_2 {
@@ -143,6 +147,7 @@ rule TA17_293A_Query_Javascript_Decode_Function {
 rule TA17_293A_Hacktool_PS_1 {
    meta:
       description = "Auto-generated rule - file 72a28efb6e32e653b656ca32ccd44b3111145a695f6f6161965deebbdc437076"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "https://www.us-cert.gov/ncas/alerts/TA17-293A"
       date = "2017-10-21"
@@ -157,6 +162,7 @@ rule TA17_293A_Hacktool_PS_1 {
 rule TA17_293A_Hacktool_Touch_MAC_modification {
    meta:
       description = "Auto-generated rule - file 070d7082a5abe1112615877214ec82241fd17e5bd465e24d794a470f699af88e"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "https://www.us-cert.gov/ncas/alerts/TA17-293A"
       date = "2017-10-21"
@@ -173,6 +179,7 @@ rule TA17_293A_Hacktool_Touch_MAC_modification {
 rule TA17_293A_Hacktool_Exploit_MS16_032 {
    meta:
       description = "Auto-generated rule - file 9b97290300abb68fb48480718e6318ee2cdd4f099aa6438010fb2f44803e0b58"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "https://www.us-cert.gov/ncas/alerts/TA17-293A"
       date = "2017-10-21"
@@ -191,6 +198,7 @@ rule TA17_293A_Hacktool_Exploit_MS16_032 {
 rule Imphash_UPX_Packed_Malware_1_TA17_293A {
    meta:
       description = "Detects malware based on Imphash of malware used in TA17-293A"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "https://www.us-cert.gov/ncas/alerts/TA17-293A"
       date = "2017-10-21"
@@ -202,6 +210,7 @@ rule Imphash_UPX_Packed_Malware_1_TA17_293A {
 rule Imphash_Malware_2_TA17_293A {
    meta:
       description = "Detects malware based on Imphash of malware used in TA17-293A"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "https://www.us-cert.gov/ncas/alerts/TA17-293A"
       date = "2017-10-21"

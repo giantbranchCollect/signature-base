@@ -12,6 +12,7 @@ import "pe"
 rule OilRig_Malware_Campaign_Gen1 {
    meta:
       description = "Detects malware from OilRig Campaign"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "https://goo.gl/QMRZ8K"
       date = "2016-10-12"
@@ -67,6 +68,7 @@ rule OilRig_Malware_Campaign_Gen1 {
 rule OilRig_Malware_Campaign_Mal1 {
    meta:
       description = "Detects malware from OilRig Campaign"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "https://goo.gl/QMRZ8K"
       date = "2016-10-12"
@@ -84,6 +86,7 @@ rule OilRig_Malware_Campaign_Mal1 {
 rule OilRig_Malware_Campaign_Gen2 {
    meta:
       description = "Detects malware from OilRig Campaign"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "https://goo.gl/QMRZ8K"
       date = "2016-10-12"
@@ -106,6 +109,7 @@ rule OilRig_Malware_Campaign_Gen2 {
 rule OilRig_Malware_Campaign_Gen3 {
    meta:
       description = "Detects malware from OilRig Campaign"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "https://goo.gl/QMRZ8K"
       date = "2016-10-12"
@@ -123,6 +127,7 @@ rule OilRig_Malware_Campaign_Gen3 {
 rule OilRig_Malware_Campaign_Mal2 {
    meta:
       description = "Detects malware from OilRig Campaign"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "https://goo.gl/QMRZ8K"
       date = "2016-10-12"
@@ -141,6 +146,7 @@ rule OilRig_Malware_Campaign_Mal2 {
 rule OilRig_Campaign_Reconnaissance {
    meta:
       description = "Detects Windows discovery commands - known from OilRig Campaign"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "https://goo.gl/QMRZ8K"
       date = "2016-10-12"
@@ -156,6 +162,7 @@ rule OilRig_Campaign_Reconnaissance {
 rule OilRig_Malware_Campaign_Mal3 {
    meta:
       description = "Detects malware from OilRig Campaign"
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "https://goo.gl/QMRZ8K"
       date = "2016-10-12"
@@ -171,6 +178,7 @@ rule OilRig_Malware_Campaign_Mal3 {
 rule OilRig_Malware_Nov17_13 {
    meta:
       description = ""
+      license = "https://creativecommons.org/licenses/by-nc/4.0/"
       author = "Florian Roth"
       reference = "https://twitter.com/ClearskySec/status/933280188733018113"
       date = "2017-11-22"
@@ -234,4 +242,71 @@ rule Oilrig_IntelSecurityManager {
       $one10 = "\\tmpCa.vbs" ascii wide
    condition:
       filesize < 300KB and any of them
+}
+
+/*
+   YARA Rule Set
+   Author: Florian Roth
+   Date: 2019-04-17
+   Identifier: Leaked APT34 / OilRig tools
+   Reference: https://twitter.com/0xffff0800/status/1118406371165126656
+*/
+
+/* Rule Set ----------------------------------------------------------------- */
+
+rule APT_APT34_PS_Malware_Apr19_1 {
+   meta:
+      description = "Detects APT34 PowerShell malware"
+      author = "Florian Roth"
+      reference = "https://twitter.com/0xffff0800/status/1118406371165126656"
+      date = "2019-04-17"
+      hash1 = "b1d621091740e62c84fc8c62bcdad07873c8b61b83faba36097ef150fd6ec768"
+   strings:
+      $x1 = "= get-wmiobject Win32_ComputerSystemProduct  | Select-Object -ExpandProperty UUID" ascii
+      $x2 = "Write-Host \"excepton occured!\"" ascii /* :) */
+
+      $s1 = "Start-Sleep -s 1;" fullword ascii
+      $s2 = "Start-Sleep -m 100;" fullword ascii
+   condition:
+      1 of ($x*) or 2 of them
+}
+
+rule APT_APT34_PS_Malware_Apr19_2 {
+   meta:
+      description = "Detects APT34 PowerShell malware"
+      author = "Florian Roth"
+      reference = "https://twitter.com/0xffff0800/status/1118406371165126656"
+      date = "2019-04-17"
+      hash1 = "2943e69e6c34232dee3236ced38d41d378784a317eeaf6b90482014210fcd459"
+   strings:
+      $x1 = "= \"http://\" + [System.Net.Dns]::GetHostAddresses(\"" ascii
+      $x2 = "$t = get-wmiobject Win32_ComputerSystemProduct  | Select-Object -ExpandProperty UUID" fullword ascii
+      $x3 = "| Where { $_ -notmatch '^\\s+$' }" ascii
+
+      $s1 = "= new-object System.Net.WebProxy($u, $true);" fullword ascii
+      $s2 = " -eq \"dom\"){$" ascii
+      $s3 = " -eq \"srv\"){$" ascii
+      $s4 = "+\"<>\" | Set-Content" ascii
+   condition:
+      1 of ($x*) and 3 of them
+}
+
+rule APT_APT34_PS_Malware_Apr19_3 {
+   meta:
+      description = "Detects APT34 PowerShell malware"
+      author = "Florian Roth"
+      reference = "https://twitter.com/0xffff0800/status/1118406371165126656"
+      date = "2019-04-17"
+      hash1 = "27e03b98ae0f6f2650f378e9292384f1350f95ee4f3ac009e0113a8d9e2e14ed"
+   strings:
+      $x1 = "Powershell.exe -exec bypass -file ${global:$address1}"
+      $x2 = "schtasks /create /F /ru SYSTEM /sc minute /mo 10 /tn"
+      $x3 = "\"\\UpdateTasks\\UpdateTaskHosts\""
+      $x4 = "wscript /b \\`\"${global:$address1" ascii
+      $x5 = "::FromBase64String([string]${global:$http_ag}))" ascii
+      $x6 = ".run command1, 0, false\" | Out-File " fullword ascii
+      $x7 = "\\UpdateTask.vbs" fullword ascii
+      $x8 = "hUpdater.ps1" fullword ascii
+   condition:
+      1 of them
 }

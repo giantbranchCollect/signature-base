@@ -27,24 +27,28 @@ condition:
 /* Rules -------------------------------------------------------------------- */
 
 rule iexplore_ANOMALY {
-	meta:
-		author = "Florian Roth"
-		description = "Abnormal iexplore.exe - typical strings not found in file"
-		date = "23/04/2014"
-		score = 55
-	strings:
-		$win2003_win7_u1 = "IEXPLORE.EXE" wide nocase
-		$win2003_win7_u2 = "Internet Explorer" wide fullword
-		$win2003_win7_u3 = "translation" wide fullword nocase
-		$win2003_win7_u4 = "varfileinfo" wide fullword nocase
-	condition:
-		filename == "iexplore.exe"
+   meta:
+      author = "Florian Roth"
+      description = "Abnormal iexplore.exe - typical strings not found in file"
+      date = "23/04/2014"
+      score = 55
+      nodeepdive = 1
+   strings:
+      $win2003_win7_u1 = "IEXPLORE.EXE" wide nocase
+      $win2003_win7_u2 = "Internet Explorer" wide fullword
+      $win2003_win7_u3 = "translation" wide fullword nocase
+      $win2003_win7_u4 = "varfileinfo" wide fullword nocase
+   condition:
+      filename == "iexplore.exe"
       and not filepath contains "teamviewer"
       and not 1 of ($win*) and not WINDOWS_UPDATE_BDC
+      and filepath contains "C:\\"
+      and not filepath contains "Package_for_RollupFix"
 }
 
 rule svchost_ANOMALY {
 	meta:
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		description = "Abnormal svchost.exe - typical strings not found in file"
 		date = "23/04/2014"
@@ -63,6 +67,7 @@ rule svchost_ANOMALY {
 
 rule explorer_ANOMALY {
 	meta:
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		description = "Abnormal explorer.exe - typical strings not found in file"
 		date = "27/05/2014"
@@ -94,6 +99,7 @@ rule sethc_ANOMALY {
 
 rule Utilman_ANOMALY {
 	meta:
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		description = "Abnormal utilman.exe - typical strings not found in file"
 		date = "01/06/2014"
@@ -108,6 +114,7 @@ rule Utilman_ANOMALY {
 
 rule osk_ANOMALY {
 	meta:
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		description = "Abnormal osk.exe (On Screen Keyboard) - typical strings not found in file"
 		date = "01/06/2014"
@@ -123,6 +130,7 @@ rule osk_ANOMALY {
 
 rule magnify_ANOMALY {
 	meta:
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		description = "Abnormal magnify.exe (Magnifier) - typical strings not found in file"
 		date = "01/06/2014"
@@ -137,6 +145,7 @@ rule magnify_ANOMALY {
 
 rule narrator_ANOMALY {
 	meta:
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		description = "Abnormal narrator.exe - typical strings not found in file"
 		date = "01/06/2014"
@@ -153,6 +162,7 @@ rule narrator_ANOMALY {
 
 rule notepad_ANOMALY {
 	meta:
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		description = "Abnormal notepad.exe - typical strings not found in file"
 		date = "01/06/2014"
@@ -172,6 +182,7 @@ rule notepad_ANOMALY {
 rule csrss_ANOMALY {
 	meta:
 		description = "Anomaly rule looking for certain strings in a system file (maybe false positive on certain systems) - file csrss.exe"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		reference = "not set"
 		date = "2015/03/16"
@@ -188,6 +199,7 @@ rule csrss_ANOMALY {
 rule conhost_ANOMALY {
 	meta:
 		description = "Anomaly rule looking for certain strings in a system file (maybe false positive on certain systems) - file conhost.exe"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		reference = "not set"
 		date = "2015/03/16"
@@ -201,6 +213,7 @@ rule conhost_ANOMALY {
 rule wininit_ANOMALY {
 	meta:
 		description = "Anomaly rule looking for certain strings in a system file (maybe false positive on certain systems) - file wininit.exe"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		reference = "not set"
 		date = "2015/03/16"
@@ -214,6 +227,7 @@ rule wininit_ANOMALY {
 rule winlogon_ANOMALY {
 	meta:
 		description = "Anomaly rule looking for certain strings in a system file (maybe false positive on certain systems) - file winlogon.exe"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		reference = "not set"
 		date = "2015/03/16"
@@ -230,6 +244,7 @@ rule winlogon_ANOMALY {
 rule SndVol_ANOMALY {
 	meta:
 		description = "Anomaly rule looking for certain strings in a system file (maybe false positive on certain systems) - file SndVol.exe"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		reference = "not set"
 		date = "2015/03/16"
@@ -243,6 +258,7 @@ rule SndVol_ANOMALY {
 rule doskey_ANOMALY {
 	meta:
 		description = "Anomaly rule looking for certain strings in a system file (maybe false positive on certain systems) - file doskey.exe"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		reference = "not set"
 		date = "2015/03/16"
@@ -256,6 +272,7 @@ rule doskey_ANOMALY {
 rule lsass_ANOMALY {
 	meta:
 		description = "Anomaly rule looking for certain strings in a system file (maybe false positive on certain systems) - file lsass.exe"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		reference = "not set"
 		date = "2015/03/16"
@@ -270,19 +287,23 @@ rule lsass_ANOMALY {
 }
 
 rule taskmgr_ANOMALY {
-	meta:
-		description = "Anomaly rule looking for certain strings in a system file (maybe false positive on certain systems) - file taskmgr.exe"
-		author = "Florian Roth"
-		reference = "not set"
-		date = "2015/03/16"
-		hash = "e8b4d84a28e5ea17272416ec45726964fdf25883"
-	strings:
-		$s0 = "Windows Task Manager" fullword wide
-		$s1 = "taskmgr.chm" fullword
-		$s2 = "TmEndTaskHandler::" ascii
+   meta:
+      description = "Anomaly rule looking for certain strings in a system file (maybe false positive on certain systems) - file taskmgr.exe"
+      author = "Florian Roth"
+      reference = "not set"
+      date = "2015/03/16"
+      nodeepdive = 1
+      hash = "e8b4d84a28e5ea17272416ec45726964fdf25883"
+   strings:
+      $s0 = "Windows Task Manager" fullword wide
+      $s1 = "taskmgr.chm" fullword
+      $s2 = "TmEndTaskHandler::" ascii
       $s3 = "CM_Request_Eject_PC" /* Win XP */
-	condition:
-		( filename == "taskmgr.exe" or filename == "Taskmgr.exe" ) and not 1 of ($s*) and not WINDOWS_UPDATE_BDC
+      $s4 = "NTShell Taskman Startup Mutex" fullword wide
+   condition:
+      ( filename == "taskmgr.exe" or filename == "Taskmgr.exe" ) and not 1 of ($s*) and not WINDOWS_UPDATE_BDC
+      and filepath contains "C:\\"
+      and not filepath contains "Package_for_RollupFix"
 }
 
 /* removed 22 rules here */
@@ -294,6 +315,7 @@ rule APT_Cloaked_PsExec
 	meta:
 		description = "Looks like a cloaked PsExec. May be APT group activity."
 		date = "2014-07-18"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		score = 60
 	strings:
@@ -301,8 +323,8 @@ rule APT_Cloaked_PsExec
 		$s1 = "Sysinternals PsExec" wide fullword
 	condition:
 		uint16(0) == 0x5a4d and $s0 and $s1
-		and not filename matches /(psexec.exe|PSEXESVC.EXE)$/is
-		and not filepath matches /RECYCLER\\S-1/
+		and not filename matches /(psexec.exe|PSEXESVC.EXE|PsExec64.exe)$/is
+		and not filepath matches /RECYCLE.BIN\\S-1/
 }
 
 /* removed 6 rules here */
@@ -312,14 +334,14 @@ rule APT_Cloaked_SuperScan
 	meta:
 		description = "Looks like a cloaked SuperScan Port Scanner. May be APT group activity."
 		date = "2014-07-18"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		score = 50
 	strings:
-		$magic = { 4d 5a }
 		$s0 = "SuperScan4.exe" wide fullword
 		$s1 = "Foundstone Inc." wide fullword
 	condition:
-		( $magic at 0 ) and $s0 and $s1 and not filename contains "superscan"
+		uint16(0) == 0x5a4d and $s0 and $s1 and not filename contains "superscan"
 }
 
 rule APT_Cloaked_ScanLine
@@ -327,21 +349,22 @@ rule APT_Cloaked_ScanLine
 	meta:
 		description = "Looks like a cloaked ScanLine Port Scanner. May be APT group activity."
 		date = "2014-07-18"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		score = 50
 	strings:
-		$magic = { 4d 5a }
 		$s0 = "ScanLine" wide fullword
 		$s1 = "Command line port scanner" wide fullword
 		$s2 = "sl.exe" wide fullword
 	condition:
-		( $magic at 0 ) and $s0 and $s1 and $s2 and not filename == "sl.exe"
+		uint16(0) == 0x5a4d and $s0 and $s1 and $s2 and not filename == "sl.exe"
 }
 
 rule SAM_Hive_Backup
 {
 	meta:
 		description = "Detects a SAM hive backup file"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		reference = "https://github.com/gentilkiwi/mimikatz/wiki/module-~-lsadump"
 		score = 60
@@ -355,4 +378,21 @@ rule SAM_Hive_Backup
 			not filename contains "_sam" and
 			not filename == "SAM" and
 			not filename == "sam"
+}
+
+rule SUSP_Renamed_Dot1Xtray {
+   meta:
+      description = "Detects a legitimate renamed dot1ctray.exe, which is often used by PlugX for DLL side-loading"
+      author = "Florian Roth"
+      reference = "Internal Research"
+      date = "2018-11-15"
+      hash1 = "f9ebf6aeb3f0fb0c29bd8f3d652476cd1fe8bd9a0c11cb15c43de33bbce0bf68"
+   strings:
+      $a1 = "\\Symantec_Network_Access_Control\\"  ascii
+      $a2 = "\\dot1xtray.pdb" ascii
+      $a3 = "DOT1X_NAMED_PIPE_CONNECT" fullword wide /* Goodware String - occured 2 times */
+   condition:
+      uint16(0) == 0x5a4d and filesize < 300KB and all of them
+      and not filename matches /dot1xtray.exe/i
+      and not filepath matches /Recycle.Bin/i
 }

@@ -16,7 +16,7 @@ rule Neuron_common_strings {
     strings:
         $strServiceName = "MSExchangeService" ascii
         $strReqParameter_1 = "cadataKey" wide
-        $strReqParameter_2 = "cid" wide
+        /* $strReqParameter_2 = "cid" wide */ /* disabled due to performance reasons */
         $strReqParameter_3 = "cadata" wide
         $strReqParameter_4 = "cadataSig" wide
         $strEmbeddedKey = "PFJTQUtleVZhbHVlPjxNb2R1bHVzPnZ3WXRKcnNRZjVTcCtWVG9Rb2xuaEVkMHVwWDFrVElFTUNTNEFnRkRCclNm clpKS0owN3BYYjh2b2FxdUtseXF2RzBJcHV0YXhDMVRYazRoeFNrdEpzbHljU3RFaHBUc1l4OVBEcURabVVZVklVb HlwSFN1K3ljWUJWVFdubTZmN0JTNW1pYnM0UWhMZElRbnl1ajFMQyt6TUhwZ0xmdEc2b1d5b0hyd1ZNaz08L01vZH VsdXM+PEV4cG9uZW50PkFRQUI8L0V4cG9uZW50PjwvUlNBS2V5VmFsdWU+" wide
@@ -105,14 +105,12 @@ rule Nautilus_forensic_artificats {
         $ = "Convert.FromBase64String(temp[1])" fullword ascii
         $ = "D68gq#5p0(3Ndsk!" fullword ascii
         $ = "dcomnetsrv" fullword ascii
-        $ = "errorfe.aspx.f5dba9b9.compiled" fullword ascii
         $ = "ERRORF~1.ASP" fullword ascii
         $ = "intelliAdminRpc" fullword ascii
         $ = "J8fs4F4rnP7nFl#f" fullword ascii
         $ = "Msnb.exe" fullword ascii
         $ = "nautilus-service.dll"
         $ = "Neuron_service" fullword ascii
-        $ = "owa.exe" fullword ascii
         $ = "owa_ar2.bat" fullword ascii
         $ = "payload.x64.dll.system" fullword ascii
         $ = "service.x64.dll.system" fullword ascii

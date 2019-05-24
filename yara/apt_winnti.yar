@@ -4,10 +4,12 @@
 	Date: 2015-10-10
 	Identifier: Winnti Malware
 */
+import "pe"
 
 rule Winnti_signing_cert {
 	meta:
 		description = "Detects a signing certificate used by the Winnti APT group"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		reference = "https://securelist.com/analysis/publications/72275/i-am-hdroot-part-1/"
 		date = "2015-10-10"
@@ -25,6 +27,7 @@ rule Winnti_signing_cert {
 rule Winnti_malware_Nsiproxy {
 	meta:
 		description = "Detects a Winnti rootkit"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		date = "2015-10-10"
 		score = 75
@@ -51,6 +54,7 @@ rule Winnti_malware_Nsiproxy {
 rule Winnti_malware_UpdateDLL {
 	meta:
 		description = "Detects a Winnti malware - Update.dll"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		reference = "VTI research"
 		date = "2015-10-10"
@@ -83,6 +87,7 @@ rule Winnti_malware_UpdateDLL {
 rule Winnti_malware_FWPK {
 	meta:
 		description = "Detects a Winnti malware - FWPKCLNT.SYS"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		reference = "VTI research"
 		date = "2015-10-10"
@@ -110,6 +115,7 @@ rule Winnti_malware_FWPK {
 rule Winnti_malware_StreamPortal_Gen {
 	meta:
 		description = "Detects a Winnti malware - Streamportal"
+		license = "https://creativecommons.org/licenses/by-nc/4.0/"
 		author = "Florian Roth"
 		reference = "VTI research"
 		date = "2015-10-10"
@@ -127,4 +133,21 @@ rule Winnti_malware_StreamPortal_Gen {
 		$s19 = "FwpsReferenceNetBufferList0" fullword ascii /* Goodware String - occured 5 times */
 	condition:
 		uint16(0) == 0x5a4d and filesize < 275KB and all of them
+}
+
+rule WINNTI_KingSoft_Moz_Confustion {
+   meta:
+      description = "Detects Barium sample with Copyright confusion"
+      author = "Markus Neis"
+      reference = "https://www.virustotal.com/en/file/070ee4a40852b26ec0cfd79e32176287a6b9d2b15e377281d8414550a83f6496/analysis/"
+      date = "2018-04-13"
+      hash1 = "070ee4a40852b26ec0cfd79e32176287a6b9d2b15e377281d8414550a83f6496"
+   condition:
+      uint16(0) == 0x5a4d and filesize < 3000KB and (
+         pe.imphash() == "7f01b23ccfd1017249c36bc1618d6892" or
+         (
+            pe.version_info["LegalCopyright"] contains "Mozilla Corporation"
+            and pe.version_info["ProductName"] contains "Kingsoft"
+         )
+      )
 }
